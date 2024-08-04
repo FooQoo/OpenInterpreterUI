@@ -43,12 +43,27 @@ def st_sidebar():
         # Section dedicated to navigate conversations
         conversation_navigation()
 
+        # browse file
+        file_browse()
+
         # Section dedicated to About Us
         about_us()
 
     # except Exception as e:
     #     st.error(e)
 
+
+def file_browse():
+    file = st.file_uploader(
+        "Upload your Data",
+        accept_multiple_files=False,
+        type = ['csv','xls','xlsx'])
+    
+    if file:
+        file_path = os.path.join("./", file.name)
+        # ファイルを保存する
+        with open(file_path, 'wb') as f:
+            f.write(file.read())
 
 # About Us Section
 def about_us():
